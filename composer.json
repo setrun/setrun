@@ -1,0 +1,38 @@
+{
+  "name": "setrun/setrun",
+  "description": "SETRUN - Yii 2 compare cms",
+  "keywords": ["yii2", "setrun", "framework", "module", "yii2-extension", "extension", "cms"],
+  "homepage": "http://setrun.ru",
+  "type": "yii2-extension",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name" : "Alexey Bashkov",
+      "email": "ab@smpage.ru",
+      "role" : "Ui Ux Designer"
+    },
+    {
+      "name" : "Denis Utkin",
+      "email": "dizirator@gmail.com",
+      "role" : "Developer",
+      "homepage": "http://github.com/dizirator"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "setrun/setrun-sys": "*",
+    "setrun/setrun-user": "*",
+    "setrun/setrun-backend": "*"
+
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "config": {
+    "process-timeout": 1800
+  }
+}
