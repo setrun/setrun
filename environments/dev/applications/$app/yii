@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Yii console bootstrap file.
+ *
+ * @link http://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ */
+
+use setrun\sys\components\Configurator;
+
+define('ROOT_DIR', dirname(dirname(__DIR__)));
+define('APP_DIR',  __DIR__ );
+
+require(ROOT_DIR . '/vendor/autoload.php');
+require(ROOT_DIR . '/functions.php');
+require(APP_DIR  . '/environment.php');
+require(ROOT_DIR . '/vendor/yiisoft/yii2/Yii.php');
+require(ROOT_DIR . '/common/bootstrap.php');
+require(APP_DIR  . '/bootstrap.php');
+
+$configurator = Yii::$container->setSingleton(Configurator::class)->get(Configurator::class);
+$configurator->setEnv(Configurator::CONSOLE);
+$configurator->setCachePath(APP_DIR . '/runtime/cache_configurator');
+$configurator->load([
+    ROOT_DIR . '/common/config/main.php',
+    ROOT_DIR . '/common/config/console.php',
+    APP_DIR  . '/config/main.php',
+    APP_DIR  . '/config/main-local.php',
+    APP_DIR  . '/config/console.php',
+    APP_DIR  . '/config/console-local.php'
+]);
+$application = new yii\console\Application($configurator->application());
+$exitCode = $application->run();
+exit($exitCode);

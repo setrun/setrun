@@ -1,6 +1,6 @@
 {
   "name": "setrun/setrun",
-  "description": "SETRUN - Yii 2 compare cms",
+  "description": "SETRUN CMS based on php framework Yii2",
   "keywords": ["yii2", "setrun", "framework", "module", "yii2-extension", "extension", "cms"],
   "homepage": "http://setrun.ru",
   "type": "yii2-extension",
@@ -21,15 +21,29 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "setrun/setrun-sys": "*",
-    "setrun/setrun-user": "*",
-    "setrun/setrun-backend": "*"
+    "setrun/setrun-sys"     : "*",
+    "setrun/setrun-user"    : "*",
+    "setrun/setrun-backend" : "*",
+    "setrun/setrun-content" : "*"
+  },
+  "require-dev": {
+    "yiisoft/yii2-debug": "~2.0.0",
+    "yiisoft/yii2-gii": "~2.0.0",
+    "yiisoft/yii2-faker": "~2.0.0",
 
+    "codeception/base": "^2.2.3",
+    "codeception/verify": "~0.3.1",
+    "codeception/specify": "~0.4.3"
   },
   "repositories": [
     {
       "type": "composer",
       "url": "https://asset-packagist.org"
+    },
+    {
+      "name": "yiidoc/yii2-timeago",
+      "type": "vcs",
+      "url": "git@github.com:dizirator/yii2-timeago.git"
     }
   ],
   "config": {
