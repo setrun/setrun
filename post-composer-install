@@ -1,6 +1,0 @@
-#!/bin/bash
-
-chmod +x init;
-chmod +x post-composer-update;
-./init --env=Development --overwrite=n && sleep 1;
-./post-composer-update;

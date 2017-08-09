@@ -42,8 +42,8 @@ return [
         "setExecutable" => [
             "applications/{$app}/yii",
             "yii",
-            "post-composer-install",
-            "post-composer-update"
+            "composer-post-install",
+            "composer-post-update"
         ],
         "setCookieValidationKey" => [
             "applications/{$app}/config/web-local.php"
@@ -60,8 +60,8 @@ return [
         "setExecutable" => [
             "applications/{$app}/yii",
             "yii",
-            "post-composer-install",
-            "post-composer-update"
+            "composer-post-install",
+            "composer-post-update"
         ],
         "setCookieValidationKey" => [
             "applications/{$app}/config/web-local.php"

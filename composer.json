@@ -51,10 +51,10 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "./post-composer-install"
+      "./composer-post-install"
     ],
     "post-update-cmd": [
-      "./post-composer-update"
+      "./composer-post-update"
     ]
   }
 }
