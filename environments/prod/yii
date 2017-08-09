@@ -11,6 +11,10 @@
 
 use setrun\sys\components\Configurator;
 
+// fcgi doesn't have STDIN and STDOUT defined by default
+defined('STDIN')  or define('STDIN',  fopen('php://stdin', 'r'));
+defined('STDOUT') or define('STDOUT', fopen('php://stdout', 'w'));
+
 define('ROOT_DIR', __DIR__);
 
 require(ROOT_DIR . '/vendor/autoload.php');

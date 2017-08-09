@@ -40,7 +40,9 @@ return [
 
         ],
         "setExecutable" => [
-            "applications/{$app}/yii"
+            "applications/{$app}/yii",
+            "yii",
+            "update"
         ],
         "setCookieValidationKey" => [
             "applications/{$app}/config/web-local.php"
@@ -55,7 +57,9 @@ return [
             "applications/{$app}/rbac"
         ],
         "setExecutable" => [
-            "applications/{$app}/yii"
+            "applications/{$app}/yii",
+            "yii",
+            "update"
         ],
         "setCookieValidationKey" => [
             "applications/{$app}/config/web-local.php"
