@@ -1,0 +1,4 @@
+#!/bin/bash
+
+php init --env=Development --overwrite=n
+./post-composer-update
