@@ -8,7 +8,7 @@
 use yii\base\InvalidParamException;
 
 /**
- * Find application by domain name
+ * Find application by domain name.
  */
 function findApplicationByDomain() : void
 {
@@ -16,7 +16,6 @@ function findApplicationByDomain() : void
     $file    = ROOT_DIR . '/common/config/domains.php';
     $domains = file_exists($file) ? (array) require $file : [];
     $dir     = ROOT_DIR . '/applications/';
-
     foreach ($domains as  $key => $value) {
         if ($_SERVER['HTTP_HOST'] === $key) {
             $app = $value;
@@ -28,6 +27,31 @@ function findApplicationByDomain() : void
     }
     define('APP_NAME', $app);
     define('APP_DIR',  $dir . $app);
+}
+
+/**
+ * Find application by cli.
+ * @return void
+ */
+function findConsoleApplication() : void
+{
+    $app         = $default = 'primary';
+    $dir         = ROOT_DIR . '/applications/';
+    $app         = findArgv('app', $default);
+    $interactive = (int) findArgv('app-interactive', 1);
+    if (!is_dir($dir . $app)) {
+        exit (formatMessage("Application [{$app}] is not found\n\n", ['fg-red']));
+    }
+    define('APP_NAME', $app);
+    define('APP_DIR',  $dir . $app);
+    if ($app !== $default && $interactive) {
+        echo formatMessage("Initialize the application [{$app}] (yes|no) ?", ['fg-yellow']) . "\n";
+        $answer = trim(fgets(STDIN));
+        if (!empty($answer) && strncasecmp($answer, 'y', 1)) {
+            exit (formatMessage("Quit initialization\n", ['fg-red']));
+        }
+    }
+    echo formatMessage("[{$app}] application initialization\n\n", ['fg-green']);
 }
 
 /**
@@ -79,4 +103,84 @@ function debug(...$params) : void
     }
     echo '</span></pre><br/>';
     if($e) exit();
+}
+
+/**
+ * Returns true if the stream supports colorization. ANSI colors are disabled if not supported by the stream.
+ *
+ * - windows without ansicon
+ * - not tty consoles
+ *
+ * @return boolean true if the stream supports ANSI colors, otherwise false.
+ */
+function ansiColorsSupported()
+{
+    return DIRECTORY_SEPARATOR === '\\'
+        ? getenv('ANSICON') !== false || getenv('ConEmuANSI') === 'ON'
+        : function_exists('posix_isatty') && @posix_isatty(STDOUT);
+}
+
+/**
+ * Get ANSI code of style.
+ * @param string $name style name
+ * @return integer ANSI code of style.
+ */
+function getStyleCode($name)
+{
+    $styles = [
+        'bold' => 1,
+        'fg-black' => 30,
+        'fg-red' => 31,
+        'fg-green' => 32,
+        'fg-yellow' => 33,
+        'fg-blue' => 34,
+        'fg-magenta' => 35,
+        'fg-cyan' => 36,
+        'fg-white' => 37,
+        'bg-black' => 40,
+        'bg-red' => 41,
+        'bg-green' => 42,
+        'bg-yellow' => 43,
+        'bg-blue' => 44,
+        'bg-magenta' => 45,
+        'bg-cyan' => 46,
+        'bg-white' => 47,
+    ];
+    return $styles[$name];
+}
+
+/**
+ * Formats message using styles if STDOUT supports it.
+ * @param string $message message
+ * @param string[] $styles styles
+ * @return string formatted message.
+ */
+function formatMessage($message, $styles)
+{
+    if (empty($styles) || !ansiColorsSupported()) {
+        return $message;
+    }
+    return sprintf("\x1b[%sm", implode(';', array_map('getStyleCode', $styles))) . $message . "\x1b[0m";
+}
+
+/**
+ * Find argument from console.
+ * @param $find
+ * @param null $default
+ * @param bool $unset
+ * @return bool|null
+ */
+function findArgv($find, $default = null, $unset = true)
+{
+    $output = false;
+    foreach ($_SERVER['argv'] ?? [] as $key => $value) {
+        if (stripos($value, "--{$find}=") !== false) {
+            $output = trim(explode("--{$find}=", $value)[1]);
+            if($unset) {
+                unset($_SERVER['argv'][$key]);
+            }
+            break;
+        }
+    }
+    return $output !== false ? $output : $default;
 }
