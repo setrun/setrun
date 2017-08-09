@@ -18,13 +18,11 @@
       "homepage": "http://github.com/dizirator"
     }
   ],
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "require": {
-    "setrun/setrun-sys"     : "*",
-    "setrun/setrun-user"    : "*",
-    "setrun/setrun-backend" : "*",
-    "setrun/setrun-content" : "*"
+    "setrun/setrun-sys"     : "@dev",
+    "setrun/setrun-user"    : "@dev",
+    "setrun/setrun-backend" : "@dev",
+    "setrun/setrun-content" : "@dev"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
