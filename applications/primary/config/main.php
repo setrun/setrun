@@ -7,8 +7,8 @@
 
 $params = array_merge(
     require(ROOT_DIR . '/common/config/params.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__  . '/params.php'),
+    require(__DIR__  . '/params-local.php')
 );
 return [
     'basePath' => dirname(__DIR__),
