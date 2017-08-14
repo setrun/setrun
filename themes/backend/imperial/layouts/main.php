@@ -8,8 +8,10 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+use themes\backend\imperial\assets\ThemeAsset;
 
-themes\backend\imperial\assets\ThemeAsset::register($this);
+ThemeAsset::register($this);
+$assetUrl = ThemeAsset::getAssetUrl();
 ?>
 <?php $this->beginPage() ?>
 
@@ -66,11 +68,11 @@ themes\backend\imperial\assets\ThemeAsset::register($this);
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="//adminlte.io/themes/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="<?= $assetUrl ?>/images/no-user-avatar.png" class="img-circle">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <p><?= Yii::$app->user->identity->username ?></p>
+                    <a href="<?= Url::to(['/user/auth/logout']) ?>" data-method="post" data-confirm="<?= Yii::t('setrun/sys', 'Are you sure ?') ?>"><i class="fa fa-sign-out text-danger"></i> Exit</a>
                 </div>
             </div>
             <?= \setrun\backend\widgets\Menu::widget() ?>
