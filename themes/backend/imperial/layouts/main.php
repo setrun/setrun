@@ -75,6 +75,7 @@ $assetUrl = ThemeAsset::getAssetUrl();
                     <a href="<?= Url::to(['/user/auth/logout']) ?>" data-method="post" data-confirm="<?= Yii::t('setrun/sys', 'Are you sure ?') ?>"><i class="fa fa-sign-out text-danger"></i> Exit</a>
                 </div>
             </div>
+            <br/>
             <?= \setrun\backend\widgets\Menu::widget() ?>
         </section>
         <!-- /.sidebar -->

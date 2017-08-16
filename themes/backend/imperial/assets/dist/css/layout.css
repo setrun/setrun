@@ -1,50 +1,120 @@
+hr {
+    margin-top: 0;
+}
+
+body {
+    color: #666;;
+}
+
+
 /**
  * Tables
  */
-.table {
+.table-bordered {
     font-size: 14px;
     margin-top: 20px;
 }
 
-.table a {
+.table-bordered a {
     text-decoration: underline;
     font-size: 14px;
 }
 
-.table th {
-    border: none !important;
-    border-top: 0;
-}
-
-
-.table thead a {
-    color: #3f5a6a;
-    text-decoration: underline;
-}
-
-.table thead .form-control {
+.table-bordered thead .form-control {
     border-radius: 0 !important;
 }
 
-.table thead a:hover {
-    color: #aaa;
+.table-bordered > thead > tr,
+.table-bordered > tbody > tr,
+.table-bordered > tfoot > tr {
+    border: 1px solid #f4f4f4;
 }
 
-.table td {
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-    line-height: 2 !important;
-    vertical-align: middle !important;
-    font-size: 14px;
+.table-bordered > thead > tr:first-child {
+    background: #2f4050;
+    border: 1px solid #2f4050;
 }
 
-.table .chosen-container-single .chosen-single {
+.table-bordered > thead a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.table-bordered thead a:hover {
+    color: #d8d5d5;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: none;
+    vertical-align: middle;
+}
+
+.table-bordered .chosen-container-single .chosen-single {
     border-radius: 0;
+}
+
+
+/**
+ * Buttons
+ */
+
+.btn,
+.buttons,
+.modal-footer .btn+.btn,
+button {
+    margin-right: 5px;
+}
+
+.btn-success {
+    background: #26B99A;
+    border: 1px solid #169F85
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    background: #169F85
+}
+
+.btn-dark {
+    color: #E9EDEF;
+    background-color: #4B5F71;
+    border-color: #364B5F
+}
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active,
+.btn-dark.active,
+.open .dropdown-toggle.btn-dark {
+    color: #FFFFFF;
+    background-color: #394D5F;
+    border-color: #394D5F
 }
 
 /**
  * AdminTLE - Skin Blue
  */
+.skin-blue .content-header > .breadcrumb {
+    font-size: 13px;
+}
+.skin-blue .box {
+    border-radius: 0;
+    border: 1px solid #E6E9ED;
+    box-shadow: none;
+}
+.skin-blue .box-body {
+    padding: 10px 17px;
+}
+.skin-blue .content-header > h1 {
+    color: #73879C;
+    font-size: 26px;
+}
 .skin-blue .main-header .navbar {
     background-color: #30698e;
 }
