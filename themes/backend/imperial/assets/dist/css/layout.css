@@ -6,6 +6,15 @@ body {
     color: #666;;
 }
 
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
+    outline: none;
+    outline-offset: 0px;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
 
 /**
  * Tables
@@ -54,21 +63,26 @@ body {
     vertical-align: middle;
 }
 
-.table-bordered .chosen-container-single .chosen-single {
-    border-radius: 0;
+.table-bordered  .form-control {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.table-bordered .switcher_label {
+    padding-bottom: 7px;
+}
+
+
+.table-bordered .btn {
+    margin-right: 5px;
 }
 
 
 /**
  * Buttons
  */
-
-.btn,
-.buttons,
-.modal-footer .btn+.btn,
-button {
-    margin-right: 5px;
-}
 
 .btn-success {
     background: #26B99A;
@@ -96,6 +110,7 @@ button {
     background-color: #394D5F;
     border-color: #394D5F
 }
+
 
 /**
  * AdminTLE - Skin Blue
@@ -269,6 +284,14 @@ button {
 /**
  * Chosen Plugin.
  */
+
+select {
+    visibility: hidden;
+}
+time {
+    font-size: 12px;
+}
+
 .chosen-container {
     width: 100% !important;
     border-radius: 4px;
@@ -388,6 +411,9 @@ button {
     -moz-box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.1) !important;
     -webkit-box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.1) !important;
     box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.1) !important;
+}
+.chosen-container-single .chosen-single {
+    border-radius: 0;
 }
 
 /**
@@ -570,7 +596,7 @@ button {
 
 .switcher:checked + label:before
 {
-    background: #9FD468;
+    background: #26B99A;
 }
 
 .switcher:checked + label:after
