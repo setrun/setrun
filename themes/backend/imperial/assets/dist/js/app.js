@@ -237,6 +237,7 @@
             options = {};
 
         options.onSuccess = function (res) {
+            $el.parents('tr').remove();
             Setrun.helpers().pjaxReload();
         };
         options.onError = function (res) {
