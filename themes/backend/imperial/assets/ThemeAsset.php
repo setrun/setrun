@@ -43,6 +43,7 @@ class ThemeAsset extends AssetBundle
         'js/jquery.livequery.min.js',
         'js/chosen-image.jquery.js',
         'js/adminLTE.js',
+        'js/noty.js',
         'js/app.js'
     ];
 
@@ -52,6 +53,7 @@ class ThemeAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
-        'setrun\sys\assets\SysAsset'
+        'setrun\sys\assets\SysAsset',
+        'setrun\sys\assets\NotyAsset'
     ];
 }

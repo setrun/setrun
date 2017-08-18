@@ -79,6 +79,15 @@ body {
     margin-right: 5px;
 }
 
+.table-bordered .sortable-widget-handler {
+    height: 25px;
+    width: 25px;
+    padding: 3px;
+}
+.table-bordered .sortable-widget-handler:hover,
+.table-bordered .sortable-widget-handler:active{
+   cursor: move;
+}
 
 /**
  * Buttons

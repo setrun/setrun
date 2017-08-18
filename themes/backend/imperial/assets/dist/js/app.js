@@ -1,5 +1,4 @@
 ;(function($, Setrun){
-
     "use strict";
 
     /**
@@ -13,18 +12,26 @@
         },
 
         pjaxReload : function () {
-            $.pjax.reload({container: '#'+ $('[data-pjax-container]').attr('id')});
+            $.pjax.reload({container: '#'+ $('[data-pjax-container]').attr('id'), 'timeout' : 3000});
         },
 
         slugify : function (str, fn) {
             var  string = str || false,
-                url    = typeof window['getSlugifyUrl'] !== 'undefined' ?  window['getSlugifyUrl'] : false;
+                url    = typeof window.getSlugifyUrl !== 'undefined' ?  window.getSlugifyUrl : false;
             if (string && url) {
                 Setrun.fn.request({string:string}, function (res) {
                     if (typeof res.slug !== 'undefined' && typeof fn === 'function') {
                         fn(res.slug);
                     }
                 }, url);
+            }
+        },
+        notyErrors : function (object) {
+            if (typeof object.errors !== 'undefined') {
+                Noty.closeAll();
+                $.each(object.errors, function (key, value) {
+                    Setrun.noty.error(value);
+                });
             }
         }
     });
@@ -62,6 +69,10 @@
         afterValidateHandle : {
             el : '.form',
             ev : 'afterValidate'
+        },
+        deleteItemHandle : {
+            el : '.delete-item',
+            ev : 'click'
         }
     };
 
@@ -90,34 +101,52 @@
      */
     Component.formSubmitHandle = function (e) {
         var $form   = $(e.target),
+            $btn    = $form.find('button'),
             data    = [],
             options = {};
+
+        if (!$btn.hasClass('submit-ajax')) {
+            return true;
+        }
 
         $form.trigger($.Event('form:before'));
         data = $form.serialize();
 
         options.onBefore = function(){
-            $form.find('button').attr('disabled', true);
+            $btn.attr('disabled', true);
             $form.trigger($.Event('form-request:before'));
 
         };
         options.onComplete = function(){
-            $form.find('button').removeAttr('disabled');
+            setTimeout(function () {
+                $btn.removeAttr('disabled');
+            }, 500);
             $form.trigger($.Event('form-request:complete'));
         };
         options.onSuccess = function(res){
+            var message = null;
             $form.trigger($.Event('form-request:success'), [res]);
             if (Setrun.fn.lang('formSuccess')) {
-                //$.growl.notice({title:"", message: Setrun.fn.lang('formSuccess'), location: 'br'});
+                message = Setrun.fn.lang('formSuccess');
+            }
+            if (message) {
+                Setrun.noty.success(message);
             }
         };
         options.onError = function(res){
-            $form.find('button').removeAttr('disabled');
+            var timeout = 50;
+            setTimeout(function () {
+                $btn.removeAttr('disabled');
+            }, 500);
             $form.trigger($.Event('form-request:error'), [res]);
             if (typeof res.errors === 'object') {
+                Noty.closeAll();
                 $.each(res.errors, function (key, value) {
                     $form.yiiActiveForm('updateAttribute', key, [value]);
-                    //$.growl.error({title:"", message:'ff', location: 'br'});
+                    setTimeout(function () {
+                        Setrun.noty.error(value);
+                    }, timeout);
+                    timeout = timeout + 50;
                 });
             }
         };
@@ -188,11 +217,37 @@
      * @param messages
      */
     Component.afterValidateHandle = function (e, messages) {
+        var timeout = 50;
+        Noty.closeAll();
         $.map(messages, function (value, key) {
             if (typeof value[0] !== 'undefined') {
-                $.growl.error({title:'', message: value[0], location: 'br'});
+                setTimeout(function () {
+                    Setrun.noty.error(value[0]);
+                }, timeout);
+                timeout = timeout + 50;
             }
         });
+    };
+
+    Component.deleteItemHandle = function (e) {
+        var $target = $(e.target),
+            $el     = $target.is('a') ? $target : $target.parent(),
+            url     = $el.attr('href'),
+            message = $el.data('confirm-message'),
+            options = {};
+
+        options.onSuccess = function (res) {
+            Setrun.helpers().pjaxReload();
+        };
+        options.onError = function (res) {
+            Setrun.helpers().notyErrors(res);
+        };
+
+        if (confirm(message)) {
+            Setrun.fn.request({}, options, url);
+        }
+
+        return false;
     };
 
     /**
@@ -218,4 +273,46 @@
 
     Setrun.component('theme/backend', Component);
     Component = null;
+
+    Setrun.noty = (function ($) {
+        var pub = {
+            defaults: {
+                layout: 'bottomLeft',
+                type: 'success',
+                timeout: 3000
+            },
+            init: function () {
+            },
+            success: function (msg, type, layout, timeout) {
+                return pub.alert(msg, 'success', layout, timeout);
+            },
+            error: function (msg, type, layout, timeout) {
+                return pub.alert(msg, 'error', layout, timeout);
+            },
+            alert: function (msg, type, layout, timeout) {
+                if (typeof msg === 'undefined' || msg === null || msg === false) {
+                    return false;
+                }
+                msg = $.trim(msg);
+                if (msg === '') {
+                    return false;
+                }
+                if (typeof window.Noty === 'undefined') {
+                    alert(msg);
+                } else {
+                    type = type || pub.defaults.type;
+                    layout = layout || pub.defaults.layout;
+                    timeout = timeout || pub.defaults.timeout;
+                    new Noty({
+                        text: msg,
+                        type: type,
+                        layout: layout,
+                        timeout: timeout
+                    }).show();
+                }
+            }
+        };
+
+        return pub;
+    }(jQuery));
 })(jQuery, Setrun);
