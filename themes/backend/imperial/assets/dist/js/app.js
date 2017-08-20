@@ -234,11 +234,17 @@
             $el     = $target.is('a') ? $target : $target.parent(),
             url     = $el.attr('href'),
             message = $el.data('confirm-message'),
+            redirect = $el.data('redirect') || false,
             options = {};
 
         options.onSuccess = function (res) {
-            $el.parents('tr').remove();
-            Setrun.helpers().pjaxReload();
+            if (!redirect) {
+                $el.parents('tr').remove();
+                Setrun.helpers().pjaxReload();
+            } else {
+                location.href = redirect;
+            }
+
         };
         options.onError = function (res) {
             Setrun.helpers().notyErrors(res);
