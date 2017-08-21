@@ -41,9 +41,6 @@
   "scripts": {
     "post-create-project-cmd": [
       "php environment --env=Development --overwrite=n"
-    ],
-    "post-update-cmd": [
-      "./post-update"
     ]
   },
   "minimum-stability": "dev",
