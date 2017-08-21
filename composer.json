@@ -43,7 +43,7 @@
       "php environment --env=Development --overwrite=n"
     ],
     "post-update-cmd": [
-      "./post-update"
+      "./composer-post-update"
     ]
   },
   "minimum-stability": "dev",
