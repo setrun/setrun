@@ -1,12 +1,5 @@
 #!/bin/bash
 
-if [ ! -f "yii" ]; then
-  chmod +x environment;
-  ./environment --env=Development --overwrite=n;
-fi
-
-chmod +x yii;
-
 for dir in applications/* ; do
   if [ -d "$dir" ]; then
      app="$(basename "${dir}")"

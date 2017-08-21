@@ -19,10 +19,10 @@
     }
   ],
   "require": {
-    "setrun/setrun-component-sys"     : "@dev",
-    "setrun/setrun-component-user"    : "@dev",
-    "setrun/setrun-component-backend" : "@dev",
-    "setrun/setrun-component-content" : "@dev"
+    "setrun/setrun-component-sys"     : "*",
+    "setrun/setrun-component-user"    : "*",
+    "setrun/setrun-component-backend" : "*",
+    "setrun/setrun-component-content" : "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
@@ -39,11 +39,11 @@
     "process-timeout": 1800
   },
   "scripts": {
-    "post-install-cmd": [
-      "./composer-post-update"
+    "post-create-project-cmd": [
+      "php environment --env=Development --overwrite=n"
     ],
     "post-update-cmd": [
-      "./composer-post-update"
+      "./post-update"
     ]
   },
   "minimum-stability": "dev",
