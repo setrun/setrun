@@ -14,7 +14,7 @@ curl -sS https://getcomposer.org/installer | php mv composer.phar /usr/local/bin
 Go to the previously created folder in which the project will be located
 > Note: The project directory must be completely empty, it should not contain any files
 ```bash
-cd /path/to/example.com
+cd /path/to/site
 ```
 Create a project without installing dependency files (vendor)
 

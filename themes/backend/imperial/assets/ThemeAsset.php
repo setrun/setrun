@@ -8,7 +8,7 @@
 namespace themes\backend\imperial\assets;
 
 use Yii;
-use setrun\sys\components\web\AssetBundle;
+use setrun\sys\over\web\AssetBundle;
 
 class ThemeAsset extends AssetBundle
 {
@@ -54,6 +54,7 @@ class ThemeAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         'setrun\sys\assets\SysAsset',
-        'setrun\sys\assets\NotyAsset'
+        'setrun\sys\assets\NotyAsset',
+        'setrun\backend\assets\BackendAsset'
     ];
 }
