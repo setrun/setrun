@@ -12,7 +12,7 @@ curl -sS https://getcomposer.org/installer | php mv composer.phar /usr/local/bin
 ### Installing SETRUN
 
 ```bash
-composer create-project --prefer-dist --stability=dev --no-install  setrun/setrun-app-basic example.com
+composer create-project --prefer-dist --stability=dev --no-install setrun/setrun-app-basic example.com
 ```
 
 ```bash
@@ -24,6 +24,18 @@ Edit the file to access the database, it is located at `applications/primary/con
 
 ```bash
 composer install -o
+```
+
+Create a new user
+
+```bash
+./yii user/user/create 
+```
+
+Add a role for the user
+
+```bash
+./yii user/rbac/role-assign
 ```
 
 [![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/)
