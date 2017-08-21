@@ -1,4 +1,4 @@
-Installing SETRUN Basic App
+Installing
 ==============
 ### Installing Composer
 
@@ -11,15 +11,18 @@ curl -sS https://getcomposer.org/installer | php mv composer.phar /usr/local/bin
 
 ### Installing SETRUN
 
+Go to the previously created folder in which the project will be located
+> Note: The project directory must be completely empty, it should not contain any files
 ```bash
-composer create-project --prefer-dist --stability=dev --no-install setrun/setrun-app-basic example.com
+cd /path/to/example.com
 ```
+Create a project without installing dependency files (vendor)
 
 ```bash
-cd example.com
+composer create-project --prefer-dist --stability=dev --no-install setrun/setrun-app-basic ./
 ```
 
-Edit the file to access the database, it is located at `applications/primary/config/db-local.php`
+Edit the file to access the database, it is located at `applications/primary/config/db-local.php`. Next, perform the installation of dependencies (vendor)
 
 
 ```bash
