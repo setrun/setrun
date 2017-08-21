@@ -3,7 +3,7 @@
   "description": "SETRUN CMS basic application based on php framework Yii2",
   "keywords": ["yii2", "yii2-extension", "yii2-cms", "cms", "setrun", "setrun-cms", "setrun-basic-app"],
   "homepage": "http://setrun.ru",
-  "type": "yii2-extension",
+  "type": "project",
   "license": "BSD-3-Clause",
   "authors": [
     {
@@ -45,5 +45,7 @@
     "post-update-cmd": [
       "./composer-post-update"
     ]
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable" : true
 }
