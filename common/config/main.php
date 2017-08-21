@@ -7,7 +7,7 @@
 
 return [
     'bootstrap' => ['log', 'common\components\Bootstrap'],
-    'sourceLanguage' => 'en-US',
+    'sourceLanguage' => 'en',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset'

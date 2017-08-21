@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -f "yii" ]; then
+  chmod +x environment;
+  ./environment --env=Development --overwrite=n;
+fi
+
 chmod +x yii;
 
 for dir in applications/* ; do
@@ -11,3 +16,5 @@ for dir in applications/* ; do
       ./yii user/rbac/init --app="$app" --app-interactive=0
   fi
 done
+
+

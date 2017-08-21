@@ -19,10 +19,10 @@
     }
   ],
   "require": {
-    "setrun/setrun-sys-component"     : "@dev",
-    "setrun/setrun-user-component"    : "@dev",
-    "setrun/setrun-backend-component" : "@dev",
-    "setrun/setrun-content-component" : "@dev"
+    "setrun/setrun-component-sys"     : "@dev",
+    "setrun/setrun-component-user"    : "@dev",
+    "setrun/setrun-component-backend" : "@dev",
+    "setrun/setrun-component-content" : "@dev"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
@@ -33,11 +33,6 @@
     {
       "type": "composer",
       "url": "https://asset-packagist.org"
-    },
-    {
-      "name": "yiidoc/yii2-timeago",
-      "type": "vcs",
-      "url": "git@github.com:dizirator/yii2-timeago.git"
     }
   ],
   "config": {
@@ -45,7 +40,7 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "./composer-post-install"
+      "./composer-post-update"
     ],
     "post-update-cmd": [
       "./composer-post-update"
