@@ -8,7 +8,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-use themes\backend\imperial\assets\ThemeAsset;
+use theme\assets\ThemeAsset;
 
 ThemeAsset::register($this);
 $assetUrl = ThemeAsset::getAssetUrl();

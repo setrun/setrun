@@ -5,7 +5,7 @@
  * @link   https://github.com/dizirator
  */
 
-namespace themes\backend\imperial\assets;
+namespace theme\assets;
 
 use Yii;
 use setrun\sys\over\web\AssetBundle;
@@ -15,7 +15,16 @@ class ThemeAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@themes/backend/imperial/assets/dist';
+    public $sourcePath = '@theme/assets/dist';
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+       $this->publishOptions['forceCopy'] = true;
+       parent::init();
+    }
 
     /**
      * @inheritdoc
