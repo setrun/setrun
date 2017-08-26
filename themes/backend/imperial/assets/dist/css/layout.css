@@ -86,7 +86,7 @@ body {
 }
 .table-bordered .sortable-widget-handler:hover,
 .table-bordered .sortable-widget-handler:active{
-   cursor: move;
+    cursor: move;
 }
 
 /**
@@ -171,7 +171,7 @@ body {
     border-bottom: 0 solid transparent;
 }
 .skin-blue .main-header .logo:hover {
-   background: #2b5e80;
+    background: #2b5e80;
 }
 .skin-blue .main-header li.user-header {
     background-color: #3c8dbc;
@@ -194,7 +194,8 @@ body {
 .skin-blue .sidebar-menu > li:hover {
     border-left-color: #3c8dbc;
 }
-.skin-blue .sidebar-menu > li.menu-open {
+.skin-blue .sidebar-menu > li.menu-open,
+.skin-blue .sidebar-menu > li.active {
     border-left-color: #3c8dbc;
     background: #293846;
 }

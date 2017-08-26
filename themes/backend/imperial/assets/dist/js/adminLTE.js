@@ -1073,7 +1073,11 @@ if (typeof jQuery === 'undefined') {
         var collapsedEvent = $.Event(Event.collapsed)
 
         tree.find(Selector.open).removeClass(ClassName.open)
-        parentLi.removeClass(ClassName.open)
+
+        setTimeout(function(){
+            parentLi.removeClass(ClassName.open)
+        }, this.options.animationSpeed);
+
         tree.slideUp(this.options.animationSpeed, function () {
             tree.find(Selector.open + ' > ' + Selector.treeview).slideUp()
             $(this.element).trigger(collapsedEvent)
