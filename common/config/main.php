@@ -7,11 +7,12 @@
 
 return [
     'bootstrap' => ['log', 'common\components\Bootstrap'],
-    'sourceLanguage' => 'en',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset'
     ],
+    'language' => 'ru-RU',
+    'sourceLanguage' => 'en-US',
     'vendorPath' => ROOT_DIR . '/vendor',
     'components' => [
         'cache' => [

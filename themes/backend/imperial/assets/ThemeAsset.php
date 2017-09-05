@@ -52,7 +52,6 @@ class ThemeAsset extends AssetBundle
         'js/jquery.livequery.min.js',
         'js/chosen-image.jquery.js',
         'js/adminLTE.js',
-        'js/noty.js',
         'js/app.js'
     ];
 

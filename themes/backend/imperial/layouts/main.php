@@ -51,8 +51,11 @@ $assetUrl = ThemeAsset::getAssetUrl();
             </a>
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <li class="hide">
                         <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                    <li>
+                        <a href="<?= Url::to(['/user/auth/logout']) ?>" data-method="post" data-confirm="<?= Yii::t('setrun/sys', 'Are you sure ?') ?>"><i class="fa fa-power-off"></i></a>
                     </li>
                 </ul>
             </div>
@@ -72,7 +75,7 @@ $assetUrl = ThemeAsset::getAssetUrl();
                 </div>
                 <div class="pull-left info">
                     <p><?= Yii::$app->user->identity->username ?></p>
-                    <a href="<?= Url::to(['/user/auth/logout']) ?>" data-method="post" data-confirm="<?= Yii::t('setrun/sys', 'Are you sure ?') ?>"><i class="fa fa-sign-out text-danger"></i> Exit</a>
+                    <small><?= Yii::t('setrun/backend', 'Welcome!') ?></small>
                 </div>
             </div>
             <br/>
@@ -87,7 +90,6 @@ $assetUrl = ThemeAsset::getAssetUrl();
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1><?= Html::encode($this->title) ?></h1>
             <?= Breadcrumbs::widget([
                 'homeLink' => [
                     'tag'     => 'ol',
@@ -101,6 +103,7 @@ $assetUrl = ThemeAsset::getAssetUrl();
 
         <!-- Main content -->
         <section class="content">
+            <div class="clearfix"></div>
             <?= $content ?>
         </section>
         <!-- /.content -->

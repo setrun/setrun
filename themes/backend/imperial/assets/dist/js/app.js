@@ -3,8 +3,6 @@
 
     var Component = {};
 
-    Component.autoload = true;
-
     /**
      * Event handlers
      * @type {object}
